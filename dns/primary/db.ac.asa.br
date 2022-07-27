@@ -11,5 +11,7 @@ $TTL	604800
 @	IN	NS	ac.asa.br.
 @	IN	NS	ns1.ac.asa.br.
 @	IN	A	primary
+@	IN	MX	mail.ac.asa.br.
 
 ns1	IN	A	primary
+mail	IN	A	primary

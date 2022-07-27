@@ -29,14 +29,29 @@ sed -i "s/reverserede/$res/" named.conf.default-zones
 wrk=$(pwd)
 docker run -d -p $ip:53:53/udp -p $ip:53:53/tcp --name ns1 --hostname dns-ns1 -v "$wrk"/:/etc/bind --dns $ip dns
 
+echo "-------------------------------------------------------------"
+echo " - - - - - - - - - - - DNS EM EXECUÇÃO - - - - - - - - - - - "
+echo "-------------------------------------------------------------"
+
 cd ../../server_mail
 docker build -t mails .
 docker run -d --name servermail -p 25:25 -p 143:143 mails
+
+echo "-------------------------------------------------------------"
+echo " - - - - - - - SERVIDORES DE EMAIL EM EXECUÇÃO - - - - - - - "
+echo "-------------------------------------------------------------"
+
 docker exec servermail /etc/init.d/postfix restart
 docker exec servermail /etc/init.d/dovecot restart
 
 cd ../webmail
 docker build -t webmail .
+cd rainloop
 wrk2=$(pwd)
-docker run -d --name webmailserver -p 80:80 -v "$wrk2"/rainloop/:var/www/html/webmail webmail
+docker run -d --name webmailserver -p 80:80 -v "$wrk2"/:/var/www/html/rainloop webmail
+
+echo "-------------------------------------------------------------"
+echo " - - - - - - - - - - WEBMAIL EM EXECUÇÃO - - - - - - - - - - "
+echo "-------------------------------------------------------------"
+
 docker exec webmailserver ./process_02.sh
