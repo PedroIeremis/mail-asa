@@ -8,9 +8,9 @@ services:
       - "53:53/udp"
       - "53:53/tcp"
     volumes:
-      - ./:/etc/bind
+      - ./dns/primary:/etc/bind
   server_mail:
-    build: ./server_mail
+    build: ./server_mails
     container_name: servermail
     ports:
       - "25:25/udp"
