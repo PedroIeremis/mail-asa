@@ -9,6 +9,8 @@ RUN apt-get update \
 RUN apt-get upgrade -y
 
 COPY process_02.sh .
+COPY process_03.sh .
+RUN ./process_03.sh
 
 EXPOSE 80
 

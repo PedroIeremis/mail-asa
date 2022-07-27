@@ -2,7 +2,7 @@
 
 echo "Altere no final do arquivo que abrirá onde tem 'SUAREDELOCAL' pela sua rede local, com o barramento de máscara."
 echo "Tecle <Enter> para prosseguir> " ; read
-cd server_mail/smtp_postfix
+cd server_mails/smtp_postfix
 nano main.cf
 
 echo "Seu IP> " ; read ip
@@ -33,7 +33,7 @@ echo "-------------------------------------------------------------"
 echo " - - - - - - - - - - - DNS EM EXECUÇÃO - - - - - - - - - - - "
 echo "-------------------------------------------------------------"
 
-cd ../../server_mail
+cd ../../server_mails
 docker build -t mails .
 docker run -d --name servermail -p 25:25 -p 143:143 mails
 
