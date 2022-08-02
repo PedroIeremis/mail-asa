@@ -13,3 +13,4 @@ $TTL	604800
 
 reverse1	IN	PTR	ac.asa.br
 reverse1	IN	PTR	ns1
+reverse1	IN	PTR	mail

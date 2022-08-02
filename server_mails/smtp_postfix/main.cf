@@ -4,7 +4,7 @@
 # Debian specific:  Specifying a file name will cause the first
 # line of that file to be used as the name.  The Debian default
 # is /etc/mailname.
-#myorigin = /etc/mailname
+#myorigin = $myhostname
 
 smtpd_banner = $myhostname ESMTP $mail_name "Protol SMTP"
 biff = yes
@@ -37,7 +37,7 @@ smtpd_relay_restrictions = permit_mynetworks permit_sasl_authenticated defer_una
 mail_owner = postfix
 myhostname = mail.ac.asa.br
 mydomain = ac.asa.br
-myorigin = $mydomain
+myorigin = $myhostname
 alias_maps = hash:/etc/aliases
 alias_database = hash:/etc/aliases
 mydestination = $myhostname, localhost.$mydomain, $mydomain localhost
