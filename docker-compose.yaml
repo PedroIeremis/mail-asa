@@ -12,9 +12,8 @@ services:
     build: ./server_mails
     container_name: servermail
     ports:
-      - "25:25/udp"
       - "25:25/tcp"
-      - "143:143/udp"
+      - "587:587/tcp"
       - "143:143/tcp"
   webmail:
     build: ./webmail
